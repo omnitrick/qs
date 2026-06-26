@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>QS Controller</title>
+<title>K quick shift</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
   :root {
@@ -138,8 +138,8 @@
 <!-- HEADER — tanpa icon -->
 <div class="hdr">
   <div>
-    <div class="hdr-title">QS CONTROLLER</div>
-    <div class="hdr-sub">ESP32 Quick Shifter</div>
+    <div class="hdr-title">K quick shift</div>
+    <div class="hdr-sub">wong awuran</div>
   </div>
   <div class="dot" id="dot"></div>
 </div>
@@ -147,22 +147,22 @@
 <!-- STRIP: BLE + perintah -->
 <div class="strip">
   <div class="ble-st">BLE: <b id="bleSt">OFF</b></div>
-  <button class="sb sb-or" id="btnC" onclick="toggleBLE()">SCAN ESP32</button>
+  <button class="sb sb-or" id="btnC" onclick="toggleBLE()">SCAN module</button>
   <button class="sb sb-dim" onclick="discBLE()">PUTUS</button>
 </div>
 <div class="strip" style="padding-top:5px;padding-bottom:5px;gap:5px;flex-wrap:wrap">
   <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('DEBUG')">DEBUG SENSOR</button>
-  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('RECAL')">KALIBRASI</button>
-  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('INFO')">INFO SETTING</button>
-  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('PI')">CEK PIT</button>
-  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('REC1')">LOG MULAI</button>
-  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('REC0')">LOG STOP</button>
+  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('RECAL')">KALIBRASI SENSOR</button>
+  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('INFO')">INFO DATA SETTINGAN</button>
+  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('PI')">CEK DATA PIT</button>
+  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('REC1')">MULAI LOG</button>
+  <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('REC0')">STOP LOG</button>
 </div>
 
 <!-- MONITOR BESAR -->
 <div class="mon">
   <div class="mc"><div class="ml">RPM</div><div class="mv" id="mR">—</div><div class="mu">r/min</div></div>
-  <div class="mc"><div class="ml">SENSOR</div><div class="mv" id="mS">—</div><div class="mu">ADC</div></div>
+  <div class="mc"><div class="ml">SENSOR ADC</div><div class="mv" id="mS">—</div><div class="mu">ADC</div></div>
   <div class="mc"><div class="ml">STATUS</div><div class="mv sm" id="mSt">IDLE</div><div class="mu" id="mMd">—</div></div>
   <div class="mc"><div class="ml">CUT</div><div class="mv" id="mC">—</div><div class="mu">ms</div></div>
 </div>
@@ -172,21 +172,21 @@
 
 <!-- QUICK SHIFTER -->
 <div class="card">
-  <div class="cttl">QUICK SHIFTER</div>
+  <div class="cttl">QUICK SHIFTER Triger</div>
   <div class="row">
-    <div class="rl">SETVAL</div>
+    <div class="rl">Trishold</div>
     <div class="nw">
       <input type="number" class="ni" id="setval" placeholder="ketik nilai ADC..." oninput="inp(this,'SETVAL')" style="font-size:.9rem;padding:8px 36px 8px 10px;text-align:left">
       <span class="nu">raw</span>
     </div>
     <span class="bd" id="b-setval">2s</span>
   </div>
-  <div class="note">ℹ Nilai ADC saat tuas ditekan — threshold otomatis oleh ESP32.</div>
+  <div class="note">ℹ seting sensitif sensor masukan top gear dan kasih tekanan seperti biasanya.</div>
   <div class="mwrap">
     <div class="mlbl">MODE TUAS</div>
     <div class="mbtns">
-      <button class="mbtn a" id="bM0" onclick="setMode(0)">↓ TEKAN (M0)</button>
-      <button class="mbtn"   id="bM1" onclick="setMode(1)">↑ TARIK (M1)</button>
+      <button class="mbtn a" id="bM0" onclick="setMode(0)">↓ TEKAN (Normal)</button>
+      <button class="mbtn"   id="bM1" onclick="setMode(1)">↑ TARIK (GP shift)</button>
     </div>
   </div>
 </div>
@@ -196,14 +196,14 @@
 
   <!-- CUT DURATION -->
   <div class="card" style="flex:1;margin:0;min-width:0">
-    <div class="cttl">CUT QS</div>
+    <div class="cttl">CUT TIME QS</div>
     <div id="cutBody"></div>
   </div>
 
   <!-- PIT LIMITER + DESKRIPSI -->
   <div style="flex:0 0 130px;margin:0;min-width:0;display:flex;flex-direction:column;gap:9px">
     <div class="card" style="margin:0">
-      <div class="cttl">PIT</div>
+      <div class="cttl">PIT LIMITER</div>
       <div class="row" style="padding:7px 8px;gap:5px">
         <div class="rl" style="min-width:40px;font-size:.54rem">RPM</div>
         <div class="nw" style="max-width:64px"><input type="number" class="ni" id="pitL" value="8000" step="100" oninput="inp(this,'PL')" style="font-size:.72rem;padding:5px 20px 5px 3px"><span class="nu">RPM</span></div>
@@ -378,10 +378,10 @@ function setMode(m){
 
 // CUT ROWS
 const cuts=[
-  {id:'c1',l:'1k–4k',  d:80,n:1},{id:'c2',l:'4k–6k',  d:70,n:2},
-  {id:'c3',l:'6k–8k',  d:65,n:3},{id:'c4',l:'8k–10k', d:60,n:4},
-  {id:'c5',l:'10k–12k',d:55,n:5},{id:'c6',l:'12k–14k',d:50,n:6},
-  {id:'c7',l:'14k+',  d:45,n:7},
+  {id:'c1',l:'1000–4000',  d:80,n:1},{id:'c2',l:'4000–6000',  d:70,n:2},
+  {id:'c3',l:'6000–8000',  d:65,n:3},{id:'c4',l:'8000–10000', d:60,n:4},
+  {id:'c5',l:'10000–12000',d:55,n:5},{id:'c6',l:'12000–14000',d:50,n:6},
+  {id:'c7',l:'14000+',  d:45,n:7},
 ];
 (function(){
   const b=document.getElementById('cutBody');
@@ -482,3 +482,4 @@ function addLog(m,c){
 </script>
 </body>
 </html>
+o
