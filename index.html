@@ -135,7 +135,6 @@
 </head>
 <body>
 
-<!-- HEADER — tanpa icon -->
 <div class="hdr">
   <div>
     <div class="hdr-title">K quick shift</div>
@@ -144,7 +143,6 @@
   <div class="dot" id="dot"></div>
 </div>
 
-<!-- STRIP: BLE + perintah -->
 <div class="strip">
   <div class="ble-st">BLE: <b id="bleSt">OFF</b></div>
   <button class="sb sb-or" id="btnC" onclick="toggleBLE()">SCAN module</button>
@@ -159,7 +157,6 @@
   <button class="cb" style="flex:1;min-width:80px;text-align:center" onclick="s('REC0')">STOP LOG</button>
 </div>
 
-<!-- MONITOR BESAR -->
 <div class="mon">
   <div class="mc"><div class="ml">RPM</div><div class="mv" id="mR">—</div><div class="mu">r/min</div></div>
   <div class="mc"><div class="ml">SENSOR ADC</div><div class="mv" id="mS">—</div><div class="mu">ADC</div></div>
@@ -167,10 +164,8 @@
   <div class="mc"><div class="ml">CUT</div><div class="mv" id="mC">—</div><div class="mu">ms</div></div>
 </div>
 
-<!-- LOG KECIL -->
 <div class="log" id="log"><p>// belum terhubung...</p></div>
 
-<!-- QUICK SHIFTER -->
 <div class="card">
   <div class="cttl">QUICK SHIFTER Triger</div>
   <div class="row">
@@ -191,55 +186,44 @@
   </div>
 </div>
 
-<!-- CUT + PIT SIDE BY SIDE -->
-<div style="display:flex;gap:9px;margin:9px 9px 0">
-
-  <!-- CUT DURATION -->
-  <div class="card" style="flex:1;margin:0;min-width:0">
-    <div class="cttl">CUT TIME QS</div>
-    <div id="cutBody"></div>
-  </div>
-
-  <!-- PIT LIMITER + DESKRIPSI -->
-  <div style="flex:0 0 130px;margin:0;min-width:0;display:flex;flex-direction:column;gap:9px">
-    <div class="card" style="margin:0">
-      <div class="cttl">PIT LIMITER</div>
-      <div class="row" style="padding:7px 8px;gap:5px">
-        <div class="rl" style="min-width:40px;font-size:.54rem">RPM</div>
-        <div class="nw" style="max-width:64px"><input type="number" class="ni" id="pitL" value="8000" step="100" oninput="inp(this,'PL')" style="font-size:.72rem;padding:5px 20px 5px 3px"><span class="nu">RPM</span></div>
-        <div class="pm"><button class="pb" onclick="stp('pitL',100,'PL')">+</button><button class="pb" onclick="stp('pitL',-100,'PL')">−</button></div>
-        <span class="bd" id="b-pitL">2s</span>
-      </div>
-      <div class="row" style="padding:7px 8px;gap:5px">
-        <div class="rl" style="min-width:40px;font-size:.54rem">CUT</div>
-        <div class="nw" style="max-width:64px"><input type="number" class="ni" id="pitC" value="60" oninput="inp(this,'PD')" style="font-size:.72rem;padding:5px 20px 5px 3px"><span class="nu">ms</span></div>
-        <div class="pm"><button class="pb" onclick="stp('pitC',5,'PD')">+</button><button class="pb" onclick="stp('pitC',-5,'PD')">−</button></div>
-        <span class="bd" id="b-pitC">2s</span>
-      </div>
-      <div class="row" style="padding:7px 8px;gap:5px">
-        <div class="rl" style="min-width:40px;font-size:.54rem">REST</div>
-        <div class="nw" style="max-width:64px"><input type="number" class="ni" id="pitR" value="100" oninput="inp(this,'PR')" style="font-size:.72rem;padding:5px 20px 5px 3px"><span class="nu">ms</span></div>
-        <div class="pm"><button class="pb" onclick="stp('pitR',5,'PR')">+</button><button class="pb" onclick="stp('pitR',-5,'PR')">−</button></div>
-        <span class="bd" id="b-pitR">2s</span>
-      </div>
-    </div>
-    <!-- CATATAN PIT -->
-    <div class="card" style="margin:0;flex:1;display:flex;flex-direction:column">
-      <div class="cttl" style="font-size:.5rem;padding:6px 8px 5px">CATATAN</div>
-      <textarea placeholder="catatan pit..." style="flex:1;width:100%;background:#0e0e0e;border:none;outline:none;color:var(--txt);font-family:var(--mono);font-size:.62rem;line-height:1.6;padding:8px;resize:none;min-height:80px;letter-spacing:.02em"></textarea>
-    </div>
-  </div>
-
+<div class="card">
+  <div class="cttl">CUT TIME QS</div>
+  <div id="cutBody"></div>
 </div>
 
-<!-- CATATAN BAWAH -->
-<div class="card" style="margin:9px 9px 0">
-  <div class="cttl">CATATAN</div>
+<div class="card">
+  <div class="cttl">PIT LIMITER</div>
+  <div class="row" style="padding:7px 8px;gap:5px">
+    <div class="rl" style="min-width:40px;font-size:.54rem">RPM</div>
+    <div class="nw"><input type="number" class="ni" id="pitL" value="8000" step="100" oninput="inp(this,'PL')" style="font-size:.72rem;padding:5px 20px 5px 3px"><span class="nu">RPM</span></div>
+    <div class="pm"><button class="pb" onclick="stp('pitL',100,'PL')">+</button><button class="pb" onclick="stp('pitL',-100,'PL')">−</button></div>
+    <span class="bd" id="b-pitL">2s</span>
+  </div>
+  <div class="row" style="padding:7px 8px;gap:5px">
+    <div class="rl" style="min-width:40px;font-size:.54rem">CUT</div>
+    <div class="nw"><input type="number" class="ni" id="pitC" value="60" oninput="inp(this,'PD')" style="font-size:.72rem;padding:5px 20px 5px 3px"><span class="nu">ms</span></div>
+    <div class="pm"><button class="pb" onclick="stp('pitC',5,'PD')">+</button><button class="pb" onclick="stp('pitC',-5,'PD')">−</button></div>
+    <span class="bd" id="b-pitC">2s</span>
+  </div>
+  <div class="row" style="padding:7px 8px;gap:5px">
+    <div class="rl" style="min-width:40px;font-size:.54rem">REST</div>
+    <div class="nw"><input type="number" class="ni" id="pitR" value="100" oninput="inp(this,'PR')" style="font-size:.72rem;padding:5px 20px 5px 3px"><span class="nu">ms</span></div>
+    <div class="pm"><button class="pb" onclick="stp('pitR',5,'PR')">+</button><button class="pb" onclick="stp('pitR',-5,'PR')">−</button></div>
+    <span class="bd" id="b-pitR">2s</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="cttl" style="font-size:.5rem;padding:6px 8px 5px">CATATAN PIT LIMITER</div>
+  <textarea placeholder="catatan pit..." style="width:100%;background:#0e0e0e;border:none;outline:none;color:var(--txt);font-family:var(--mono);font-size:.62rem;line-height:1.6;padding:12px;resize:vertical;min-height:80px;letter-spacing:.02em"></textarea>
+</div>
+
+<div class="card">
+  <div class="cttl">CATATAN UMUM</div>
   <textarea placeholder="Tulis deskripsi, catatan setting, dll..." style="width:100%;background:#0e0e0e;border:none;outline:none;color:var(--txt);font-family:var(--mono);font-size:.72rem;line-height:1.7;padding:12px;resize:vertical;min-height:90px;letter-spacing:.03em"></textarea>
 </div>
 
-<!-- DATA LOGGER -->
-<div class="card" style="margin:9px 9px 0">
+<div class="card">
   <div class="cttl" style="justify-content:space-between">
     <span style="display:flex;align-items:center;gap:6px"><span style="width:3px;height:11px;background:var(--or);border-radius:2px;display:inline-block"></span>DATA LOGGER</span>
     <span style="display:flex;align-items:center;gap:6px">
@@ -250,7 +234,6 @@
       <button onclick="clearLogger()" style="padding:3px 9px;border-radius:4px;background:#1a1a1a;border:1px solid var(--bdr);color:var(--dim);font-family:var(--mono);font-size:.55rem;letter-spacing:.05em;cursor:pointer">✕ CLEAR</button>
     </span>
   </div>
-  <!-- STAT BAR -->
   <div style="display:flex;gap:1px;background:var(--bdr);border-bottom:1px solid var(--bdr)">
     <div style="flex:1;background:#0a0a0a;padding:8px 10px;text-align:center">
       <div style="font-size:.5rem;color:var(--dim);letter-spacing:.1em;margin-bottom:4px">MAX RPM</div>
@@ -269,7 +252,6 @@
       <div id="lgPts" style="font-family:var(--mono);font-size:1.3rem;color:var(--txt);line-height:1">0</div>
     </div>
   </div>
-  <!-- LOG STREAM -->
   <div id="lgStream" style="background:#060606;height:180px;overflow-y:auto;padding:8px 12px;font-family:var(--mono);font-size:.65rem;line-height:1.75;color:#2a6aff">
     <p style="color:var(--dim)">// Tekan MULAI lalu LOG MULAI di perintah atas...</p>
   </div>
@@ -418,68 +400,27 @@ function startLogger(){
   document.getElementById('logState').textContent='REC';
   const s=document.getElementById('lgStream');
   s.innerHTML='';
-  addLgLine('// logging dimulai...','var(--dim)');
+  addLgLine('// logging dimulai...');
 }
 
 function stopLogger(){
   lgActive=false;
-  document.getElementById('logDot').style.background='var(--gr)';
-  document.getElementById('logDot').style.boxShadow='0 0 6px var(--gr)';
-  document.getElementById('logState').style.color='var(--gr)';
-  document.getElementById('logState').textContent='DONE';
-  const dur=lgStartMs?((Date.now()-lgStartMs)/1000).toFixed(1)+'s':'—';
-  document.getElementById('lgDur').textContent=dur;
-  addLgLine('// logging selesai — '+dur,'var(--gr)');
-}
-
-function clearLogger(){
-  lgActive=false; lgMaxRpm=0; lgCutCount=0; lgPoints=0; lgStartMs=0;
   document.getElementById('logDot').style.background='var(--dim)';
   document.getElementById('logDot').style.boxShadow='none';
   document.getElementById('logState').style.color='var(--dim)';
   document.getElementById('logState').textContent='IDLE';
-  ['lgMaxRpm','lgTotCut','lgDur','lgPts'].forEach(i=>document.getElementById(i).textContent='—');
+  addLgLine('// logging dihentikan.');
+}
+
+function clearLogger(){
+  document.getElementById('lgStream').innerHTML='<p style="color:var(--dim)">// Log dibersihkan.</p>';
+  document.getElementById('lgMaxRpm').textContent='—';
+  document.getElementById('lgTotCut').textContent='—';
+  document.getElementById('lgDur').textContent='—';
   document.getElementById('lgPts').textContent='0';
-  document.getElementById('lgStream').innerHTML='<p style="color:var(--dim)">// Tekan MULAI lalu LOG MULAI di perintah atas...</p>';
 }
 
-function addLgLine(txt, col){
-  const s=document.getElementById('lgStream');
-  const p=document.createElement('p');
-  p.textContent=txt;
-  if(col) p.style.color=col;
-  s.appendChild(p);
-  while(s.children.length>200) s.removeChild(s.firstChild);
-  s.scrollTop=s.scrollHeight;
-}
-
-function feedLogger(raw){
-  if(!lgActive) return;
-  // format L:ms,rpm,sens,cut
-  if(raw.startsWith('L:')){
-    const p=raw.substring(2).split(',');
-    if(p.length<4) return;
-    const rpm=parseInt(p[1]), sens=parseInt(p[2]), cut=p[3].trim()==='1';
-    lgPoints++;
-    if(rpm>lgMaxRpm){ lgMaxRpm=rpm; document.getElementById('lgMaxRpm').textContent=rpm.toLocaleString('id'); }
-    if(cut){ lgCutCount++; document.getElementById('lgTotCut').textContent=lgCutCount; }
-    document.getElementById('lgPts').textContent=lgPoints;
-    const ts=p[0];
-    const color=cut?'var(--rd)':'#3a7aff';
-    addLgLine((cut?'[CUT] ':'       ')+'t='+ts+'ms  RPM='+rpm+'  S='+sens, color);
-  }
-  if(raw.includes('LOG_STOP')||raw.includes('TIMEOUT')){ stopLogger(); }
-}
-
-// LOG
-const lb=document.getElementById('log');
-function addLog(m,c){
-  const p=document.createElement('p');p.textContent=m;if(c)p.className=c;
-  lb.appendChild(p);
-  while(lb.children.length>60)lb.removeChild(lb.firstChild);
-  lb.scrollTop=lb.scrollHeight;
-}
-</script>
-</body>
-</html>
-o
+function addLog(msg, type){
+  const log = document.getElementById('log');
+  const p = document.createElement('p');
+  if(type) p.clas
